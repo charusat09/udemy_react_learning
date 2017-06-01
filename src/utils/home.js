@@ -5,10 +5,10 @@ class Home extends Component {
   render() {
     return (
       <div className="row">
-      	<div className="col-lg-6 col-lg-offset-3">
-	        <h2>Home</h2>
+        <div className="col-lg-6 col-lg-offset-3">
+          <h2>Home</h2>
 
-	        <MultiInputForm /> 
+          <MultiInputForm />
         </div>
       </div>
     );

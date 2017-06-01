@@ -17,17 +17,17 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 ReactDOM.render(
-	<Router>
+  <Router>
     <div>
       <Route path="/" component={App}/>
       <Route path="/home" component={Home}/>
       <Route path="/about" component={About} />
       <Route path="/topics" component={Topics}/>
     </div>
-  </Router>, 
-	document.getElementById('root'));
+  </Router>,
+  document.getElementById('root'));
 registerServiceWorker();
 
 // setInterval(()=>{
-// 	ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+//   ReactDOM.unmountComponentAtNode(document.getElementById('root'));
 // }, 10000);
