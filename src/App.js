@@ -7,6 +7,8 @@ import Header from './utils/header.js';
 import Content from './utils/content.js';
 import FormPart1 from './utils/form_learning.js';
 import Footer from './utils/footer.js';
+import Form from './utils/form.js';
+import MultiInputForm from './utils/multi_input_form.js';
 
 
 class App extends Component {
@@ -26,6 +28,8 @@ class App extends Component {
         {/* <Clock /> */}
         {/* <FormPart1 /> */}
         {/* <Footer /> */}
+        {/* <Form /> */}
+        <MultiInputForm />
       </div>
     );
   }
