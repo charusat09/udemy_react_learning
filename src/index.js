@@ -13,6 +13,8 @@ import Home from './utils/home.js';
 import About from './utils/about.js';
 import Topics from './utils/topics.js';
 
+import Addisum from './game/addisum.js'
+
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
@@ -23,6 +25,7 @@ ReactDOM.render(
       <Route path="/home" component={Home}/>
       <Route path="/about" component={About} />
       <Route path="/topics" component={Topics}/>
+      <Route path="/addisum" component={Addisum} />
     </div>
   </Router>,
   document.getElementById('root'));
