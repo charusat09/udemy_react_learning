@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import QuizOptions from './QuizOptions.js'
+import QuizOptions from './QuizOptions.js';
+import classNames from 'classnames';
 
 class Addisum extends Component {
 	constructor(props){
 		super(props)
 
-		let riddle = this.play();
+		let riddle = this.playGame();
 		let correct = false;
 		let gameover = false;
 
@@ -14,6 +15,7 @@ class Addisum extends Component {
 		this.renderOptions = this.renderOptions.bind(this);
 		this.renderMessage = this.renderMessage.bind(this);
 		this.play = this.play.bind(this);
+		this.checkOptions = this.checkOptions.bind(this);
 	}
 
 	randomNumber(min, max) {
@@ -51,18 +53,33 @@ class Addisum extends Component {
 		return(
 			<div className="options">
 				{this.state.riddle.resultsArray.map((option, i) => 
-						<QuizOptions option={option} key={i}/>
+						<QuizOptions option={option} key={i} checkOptions={this.checkOptions}/>
 				)}
 			</div>
 		)
 
 	}
 
-	renderMessage() {
-
+	checkOptions(option){
+		if(option === this.state.riddle.answer) {
+			console.log("got it "+option)
+			this.setState({correct: true, gameOver: true});
+		} else {
+			console.log("try again "+option)
+			this.setState({correct: false, gameOver: true});
+		};
 	}
 
-	play(){
+	renderMessage() {
+		if(this.state.correct) {
+			console.log("cllll " + this.state.correct)
+			return <h3>Good Job! Hit the button below to Play Again!</h3>
+		} else {
+			return <h3>ohhh ohhh! Hit the button below to Play Again!</h3>
+		}
+	}
+
+	playGame(){
 		let field1 = this.randomNumber(20,50);
 		let field2 = this.randomNumber(20,50);
 		let result = field1 + field2;
@@ -76,10 +93,15 @@ class Addisum extends Component {
 		let riddle = { field1, field2, resultsArray, answer: result }
 
 		if(this.state && this.state.gameOver) {
-	  	this.setState({riddle: riddle});
+	  	this.setState({riddle});
 	  } else {
 	  	return riddle;
 	  }
+	}
+
+	play() {
+		this.setState({correct: false, gameOver: false});
+		this.playGame();
 	}
 
 	render() {
@@ -94,7 +116,7 @@ class Addisum extends Component {
 					</p>
 					{this.renderOptions()}
 				</div>
-				<div className="">
+				<div className={classNames("after", {'hide': !this.state.gameOver}, {'wrong animated zoomInDown': !this.state.correct},  {'correct animated zoomInDown': this.state.correct})}>
 					{this.renderMessage()}
 				</div>
 				<div className="play-again">

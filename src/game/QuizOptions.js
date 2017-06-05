@@ -9,7 +9,7 @@ class QuizOptions extends Component {
 	}
 
 	callParentCheckOptions() {
-
+		this.props.checkOptions(this.props.option);
 	}
 
 	render() {
