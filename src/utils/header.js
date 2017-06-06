@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 
 import logo from '../logo.svg';
+
 class Header extends Component {
   render() {
     return (
@@ -15,9 +16,10 @@ class Header extends Component {
         <ul className="nav nav-pills">
             <li role="presentation"><Link to="/">App</Link></li>
             <li role="presentation"><Link to="/home">Home</Link></li>
-            <li role="presentation"><Link to="/about">About</Link></li>
             <li role="presentation"><Link to="/topics">Topics</Link></li>
             <li role="presentation"><Link to="/addisum">AddiSum</Link></li>
+            <li role="presentation"><Link to="/easyabc">EasyABC</Link></li>
+            <li role="presentation"><Link to="/about">About</Link></li>
           </ul>
       </div>
     );

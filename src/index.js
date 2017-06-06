@@ -14,6 +14,7 @@ import About from './utils/about.js';
 import Topics from './utils/topics.js';
 
 import Addisum from './game/addisum.js'
+import EasyABC from './EasyABC/abc.js'
 
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
@@ -26,6 +27,7 @@ ReactDOM.render(
       <Route path="/about" component={About} />
       <Route path="/topics" component={Topics}/>
       <Route path="/addisum" component={Addisum} />
+      <Route path="/easyabc" component={EasyABC} />
     </div>
   </Router>,
   document.getElementById('root'));
