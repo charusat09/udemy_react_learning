@@ -9,7 +9,7 @@ class ABC extends Component {
     super(props)
     this.state = {
       alphabets: alphabets,
-      currentPosition: 12,
+      currentPosition: 25,
       currentTick: 0,
       random: false,
       sound: true
@@ -22,23 +22,87 @@ class ABC extends Component {
     this.playSound = this.playSound.bind(this);
   }
 
+  randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   switchRandom() {
     this.setState({random: !this.state.random})
   }
-  switchSound(){
+
+  switchSound() {
     this.setState({sound: !this.state.sound})
   }
+
   prev() {
-
+    if(this.state.currentPosition > 0) {
+      this.setState({currentPosition: (this.state.currentPosition - 1)})
+    } else {
+      this.setState({currentPosition: (this.state.alphabets.length - 1)})
+    }
   }
+
   next() {
-
+    if(this.state.random) {
+      if(this.state.currentTick < 2) {
+        this.setState({currentTick: this.state.currentTick + 1});
+      } else {
+        this.setState({currentPosition: this.randomNumber(0,25), currentTick: 0});
+      }
+    } else {
+      if(this.state.currentPosition < (this.state.alphabets.length - 1)) {
+        if(this.state.currentTick < 2) {
+          this.setState({currentTick: this.state.currentTick+1});
+        } else {
+          this.setState({currentPosition: this.state.currentPosition + 1, currentTick: 0});
+        }
+      } else {
+        if(this.state.currentTick < 2) {
+          this.setState({currentTick: this.state.currentTick + 1 });
+        } else {
+          this.setState({currentPosition: 0, currentTick: 0});
+        }
+      }
+    }
   }
+
+  componentDidMount(){
+    let letterSound = document.querySelector(`audio[data-key="letter"]`);
+    if(this.state.currentPosition === 0){
+      letterSound.currentTime = 0;
+      letterSound.play();
+    }
+  }
+
   manualPlaySound() {
-
+    let letterSound = document.querySelector(`audio[data-key="letter"]`);
+    let wordSound = document.querySelector(`audio[data-key="word"]`);
+    if(this.state.currentTick === 0) {
+      letterSound.currentTime = 0;
+      letterSound.play();
+    } else {
+      wordSound.currentTime = 0;
+      wordSound.play();
+    }
   }
-  playSound() {
 
+  componentDidUpdate(){
+    this.playSound();
+  }
+
+  playSound() {
+    let letterSound = document.querySelector(`audio[data-key="letter"]`);
+    let wordSound = document.querySelector(`audio[data-key="word"]`);
+
+    if(this.state.sound) {
+      if(this.state.currentTick === 0) {
+        letterSound.currentTime = 0;
+        letterSound.play();
+      } else {
+        wordSound.currentTime = 0;
+        wordSound.play();
+      }
+    }
   }
 
   render() {
