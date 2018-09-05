@@ -2,6 +2,7 @@
   "name": "hello-world",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://charusat09.github.io/udemy_react_learning",
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^15.5.4",
@@ -9,12 +10,15 @@
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.7",
+    "gh-pages": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
